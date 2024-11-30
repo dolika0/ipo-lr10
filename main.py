@@ -22,4 +22,7 @@ titles = [] # авторы
 comments = [] # цитаты
 
 for quote in allQuote:
-    
+    if quote.find('span', class_='author') is not None:
+        titles.append(quote.text)
+
+print(titles)
