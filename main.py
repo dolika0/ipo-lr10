@@ -22,7 +22,8 @@ titles = [] # авторы
 comments = [] # цитаты
 
 for quote in allQuote:
-    if quote.find('span', class_='author') is not None:
+    if quote.find('div', class_='quote') is not None:
         titles.append(quote.text)
+for  quote in titles:
+    print(titles)
 
-print(titles)
