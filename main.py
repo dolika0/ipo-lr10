@@ -60,30 +60,30 @@ with open(file_index, "w", encoding='utf-8') as file:
     <title>Quotes to Scrape</title>
     <style>
         body {
-            background-color: #f0f0f0;
-            font-family: Arial, sans-serif;
+            background-color: #fde2ff;
+            font-family:  Bad Script, sans-serif;
         }
         h1 {
             text-align: center;
-            color: #333;
+            color: #9a18b0;
         }
         table {
             border-collapse: collapse;
             width: 80%;
             margin: 20px auto;
-            background-color: #fff;
+            background-color: #ffffff;
         }
         th, td {
-            border: 1px solid #ddd;
+            border: 1px solid #8a089c;
             padding: 8px;
             text-align: left;
         }
         th {
-            background-color: #4CAF50;
+            background-color: #fd9dad;
             color: white;
         }
         tr:nth-child(even) {
-            background-color: #f2f2f2;
+            background-color: #ffffff;
         }
     </style>
 </head>
