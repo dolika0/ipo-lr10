@@ -13,10 +13,10 @@ if response.status_code != 200:
 
 soup = BeautifulSoup(response.text, 'html.parser')
 
-# Находим все цитаты
-quote_elements = soup.find_all('div', class_='quote')
+# Находим все цитаты по классу
+quote_elements = soup.find_all('div', class_ = 'quote')
 
-# Отладочные сообщения для проверки получения данных
+# Выводим кол-во найденных цитат
 print(f"Найдено цитат: {len(quote_elements)}")
 
 # Списки для цитат и авторов
@@ -25,9 +25,11 @@ list_authors = []
 
 # Заполняем списки данными
 for quote in quote_elements:
-    text = quote.select_one('.text').get_text(strip=True)
-    author = quote.select_one('.author').get_text(strip=True)
+
+    text = quote.select_one('.text').get_text(strip = True)
     list_quotes.append(text)
+
+    author = quote.select_one('.author').get_text(strip = True)
     list_authors.append(author)
 
 # Выводим данные в требуемом формате
@@ -43,25 +45,25 @@ for i in range(len(list_quotes)):
     writer_list.append(writer)
 
 print("Записываем данные в файл data.json")
-with open(file_json, "w", encoding='utf-8') as file:
-    json.dump(writer_list, file, indent=4, ensure_ascii=False)
+with open(file_json, "w", encoding = 'utf-8') as file:
+    json.dump(writer_list, file, indent = 4)
 
 print("Проверяем содержимое файла data.json:")
-with open(file_json, "r", encoding='utf-8') as file:
+with open(file_json, "r", encoding = 'utf-8') as file:
     data = json.load(file)
-    print(json.dumps(data, indent=4, ensure_ascii=False))
+    print(json.dumps(data, indent = 4)) # Преобразуем обратно в json, с отступами в 4 пробела
 
 # Генерация HTML файла на основе данных из data.json
 file_index = "index.html"
 
-with open(file_index, "w", encoding='utf-8') as file:
+with open(file_index, "w", encoding = 'utf-8') as file:
     file.write("""<html>
 <head>
     <title>Quotes to Scrape</title>
     <style>
         body {
             background-color: #fde2ff;
-            font-family:  Bad Script, sans-serif;
+            font-family: Cascadia Code SemiLight;
         }
         h1 {
             text-align: center;
@@ -104,7 +106,7 @@ with open(file_index, "w", encoding='utf-8') as file:
 
     file.write("""
     </table>
-    <p style="text-align: center;"><a href="http://quotes.toscrape.com/">Источник данных</a></p>
+    <p style="text-align: center;"><i><a href="http://quotes.toscrape.com/">Оригинальный источник данных</a></i></p>
 </body>
 </html>
 """)
