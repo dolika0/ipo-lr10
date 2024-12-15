@@ -2,29 +2,25 @@ import requests
 from bs4 import BeautifulSoup
 import json
 
-# URL для парсинга
-url = 'http://quotes.toscrape.com/'
+url = 'http://quotes.toscrape.com/' # URL для парсинга
 
-# Отправляем GET-запрос
-response = requests.get(url)
+response = requests.get(url) # Отправляем GET-запрос
 if response.status_code != 200:
     print(f"Ошибка при запросе к сайту: {response.status_code}")
     exit()
 
 soup = BeautifulSoup(response.text, 'html.parser')
 
-# Находим все цитаты по классу
-quote_elements = soup.find_all('div', class_ = 'quote')
+quote_elements = soup.find_all('div', class_ = 'quote') # Находим все цитаты по классу
 
-# Выводим кол-во найденных цитат
-print(f"Найдено цитат: {len(quote_elements)}")
+print(f"Найдено цитат: {len(quote_elements)}") # Выводим кол-во найденных цитат
 
-# Списки для цитат и авторов
-list_quotes = []
-list_authors = []
 
-# Заполняем списки данными
-for quote in quote_elements:
+list_quotes = [] # Списки для цитат 
+list_authors = [] # Списки для авторов
+
+
+for quote in quote_elements: # Заполняем списки данными
 
     text = quote.select_one('.text').get_text(strip = True)
     list_quotes.append(text)
@@ -32,8 +28,8 @@ for quote in quote_elements:
     author = quote.select_one('.author').get_text(strip = True)
     list_authors.append(author)
 
-# Выводим данные в требуемом формате
-for i in range(len(list_quotes)):
+
+for i in range(len(list_quotes)): # Выводим данные в требуемом формате
     print(f"{i + 1}. Quote: {list_quotes[i]}; Author: {list_authors[i]};")
 
 # Сохранение данных в файл data.json
